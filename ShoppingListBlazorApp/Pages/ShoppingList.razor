@@ -1,5 +1,6 @@
 ﻿@page "/shoppinglist"
 @using ShoppingListBlazorApp.Data;
+<PageTitle>@title</PageTitle>
 
 <h3>ShoppingList</h3>
 
@@ -19,6 +20,7 @@
                                                                             
 
 @code {
+    private string title = "Our Groceries";
     private string groceryName = string.Empty;
     private double groceryPrice;
     private List<Grocery> groceries = new();
