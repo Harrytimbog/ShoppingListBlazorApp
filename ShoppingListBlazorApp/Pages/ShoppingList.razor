@@ -15,11 +15,12 @@
     }
 </ul>
 
-<h1>Total (@groceries.Sum(Grocery => Grocery.Price))</h1>
+<h1>Total (@sum)</h1>
 
-                                                                            
+/* logic */                                                                            
 
 @code {
+    private double sum = 0;
     private string title = "Our Groceries";
     private string groceryName = string.Empty;
     private double groceryPrice;
@@ -33,6 +34,7 @@
                 Name = groceryName, 
                 Price = groceryPrice 
             });
+            sum += groceryPrice;
             groceryName = string.Empty;
             groceryPrice = 0;
         }
