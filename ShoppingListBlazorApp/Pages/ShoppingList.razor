@@ -8,16 +8,21 @@
 <input placeholder="Grocery Price" @bind="groceryPrice" />
 <button @onclick="AddGrocery">Add Grocery</button>
 
-<ul>
+<table class="table table-sm">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
     @foreach (var grocery in groceries)
     {
-        <li>@grocery.Name -- @grocery.Price</li>
+        <Item GroceryItem="@grocery" OnGroceryPriceIncreased="OnGroceryPriceIncreased" />
     }
-</ul>
+</table>
 
 <h1>Total (@sum)</h1>
 
-/* logic */                                                                            
+                                                                        
 
 @code {
     private double sum = 0;
@@ -34,9 +39,22 @@
                 Name = groceryName, 
                 Price = groceryPrice 
             });
-            sum += groceryPrice;
+
             groceryName = string.Empty;
             groceryPrice = 0;
         }
+        UpdateTotalAmount();
+    }
+
+    // method to get total amount
+    public void UpdateTotalAmount()
+    {
+        sum = groceries.Sum(x => x.Price);
+    }
+
+    // handle OnGroceryPriceIncrease Event
+    public void OnGroceryPriceIncreased()
+    {
+        UpdateTotalAmount();
     }
 }
