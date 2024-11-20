@@ -13,10 +13,12 @@
 
 
 </tr>
+ 
+
 
 @code {
     [Parameter]
-    public Grocery GroceryItem { get; set; }
+    public required Grocery GroceryItem { get; set; }
 
     [Parameter]
     public EventCallback<MouseEventArgs> OnGroceryPriceIncreased { get; set; }
